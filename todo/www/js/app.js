@@ -5,6 +5,21 @@
 // the 2nd parameter is an array of 'requires'
 angular.module('ionictodo', ['ionic'])
 
+// add a controller "TodoCtrl" to tell the javascript what to do with the list element
+// include some initial tasks to show
+.controller('TodoCtrl', function($scope){
+  $scope.tasks = [
+    { title: 'Create a button'},
+    { title: 'Have the button make an API call'},
+    { title: 'Parse the results of the API in app'},
+    { title: 'Display the parsed results in app'},
+    { title: 'Display a button that allows you to take an action'}
+
+  ];
+
+
+})
+
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     if(window.cordova && window.cordova.plugins.Keyboard) {

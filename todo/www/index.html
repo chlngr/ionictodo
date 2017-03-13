@@ -33,7 +33,9 @@
     <script src="cordova.js"></script>
 
   </head>
-  <body ng-app="ionictodo">
+
+  <!-- use the ng-app tag to declare this as an app associated with the javascript for ionictodo, and associate the controller TodoCtrl with the html body element -->
+  <body ng-app="ionictodo" ng-controller="TodoCtrl">
   <ion-side-menus>
 
   <!-- Center content -->
@@ -42,6 +44,12 @@
         <h1 class="title">Todo</h1>
       </ion-header-bar>
       <ion-content>
+      <!--- here live the list and its items -->
+        <ion-list>
+          <ion-item ng-repeat="task in tasks">
+            {{task.title}}
+          </ion-item>
+        </ion-list>
       </ion-content>
     </ion-side-menu-content>
   <!-- Left menu -->
