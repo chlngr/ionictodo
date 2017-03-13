@@ -3,6 +3,8 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
+
+// note - this is an ionic 1 app.  redo the tutorial on ionic 2.
 angular.module('ionictodo', ['ionic'])
 
 //define your factories for saving and loading projects from local storage, and save and load last active projects.
