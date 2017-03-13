@@ -42,9 +42,13 @@
     <ion-side-menu-content>
       <ion-header-bar class="bar-dark">
         <h1 class="title">Todo</h1>
+        <!-- add a button to call New Task on the header of the center content and put an ionic compose icon -->
+        <button class="button button-icon" ng-click="newTask()">
+          <i class="icon ion-compose"></i>
+        </button>
       </ion-header-bar>
       <ion-content>
-      <!--- here live the list and its items -->
+      <!--- here lives the list and its items -->
         <ion-list>
           <ion-item ng-repeat="task in tasks">
             {{task.title}}
@@ -58,6 +62,31 @@
         <h1 class="title">Projects</h1>
       </ion-header-bar>
     </ion-side-menu>
+
+    <!-- add a modal for creation of a new task at /newtask.html using an angular template. 1) header the modal with "New Task and create a cancel action associated with closeNew Task". In the body of the modal add a form whose submission calls createTask, submitting the input text as the title attribute of the task. add a button whose clicking calls "submit, triggering the createTask() call from ng-submit" -->
+    <script id="new-task.html" type="text/ng-template">
+      <div class = "modal">
+
+        <ion-header-bar class="bar-secondary">
+          <h1 class="title">New Task</h1>
+          <button class="button button-clear button-positive" ng-click="closeNewTask()">Cancel</button>
+        </ion-header-bar>
+
+        <ion-content>
+        
+          <form ng-submit="createTask(task)">
+            <div class="list">
+              <label class="item item-input">
+                <input type="text" placeholder="What is your next task?" ng-model="task.title">
+              </label>
+            </div>
+            <div class="padding">
+              <button type="submit" class="button" button-block button-positive">Create Task</button>
+            </div>
+          </form>
+        </ion-content>
+      </div>
+    </script>
   </ion-side-menus>
 <!--     <ion-pane>
       <ion-header-bar class="bar-stable">
