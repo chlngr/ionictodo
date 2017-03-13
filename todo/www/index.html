@@ -41,26 +41,43 @@
   <!-- Center content -->
     <ion-side-menu-content>
       <ion-header-bar class="bar-dark">
-        <h1 class="title">Todo</h1>
+        <!--add a button with the navicon icon to pull up the list of projects -->
+        <button class="button button-icon" ng-click="toggleProjects()">
+          <i class="icon ion-navicon"></i>
+        <!--pull the header title from the active project -->
+        <h1 class="title">{{activeProject.title}}</h1>
         <!-- add a button to call New Task on the header of the center content and put an ionic compose icon -->
         <button class="button button-icon" ng-click="newTask()">
           <i class="icon ion-compose"></i>
         </button>
       </ion-header-bar>
-      <ion-content>
+      <ion-content scroll="false">
       <!--- here lives the list and its items -->
         <ion-list>
-          <ion-item ng-repeat="task in tasks">
+          <ion-item ng-repeat="task in activeProject.tasks">
             {{task.title}}
           </ion-item>
         </ion-list>
       </ion-content>
     </ion-side-menu-content>
+
+
   <!-- Left menu -->
     <ion-side-menu side="left">
       <ion-header-bar class="bar-dark">
         <h1 class="title">Projects</h1>
+        <button class="button button-icon ion-plus" ng-click="newProject()">
+        </button>
       </ion-header-bar>
+
+      <!-- create a non-scrollable list of each project in the projects collection.  on clicking a list item call select project. show the title attributes of each project. add the ng-class active to the current project.) -->
+      <ion-content scroll="false">
+        <ion-list>
+          <ion-item ng-repeat="project in projects" ng-click="selectProject(project, $index)" ng-class="{active: activeProject == project}">
+          {{project.title}}
+          </ion-item>
+        </ion-list>
+      </ion-content>
     </ion-side-menu>
 
     <!-- add a modal for creation of a new task at /newtask.html using an angular template. 1) header the modal with "New Task and create a cancel action associated with closeNew Task". In the body of the modal add a form whose submission calls createTask, submitting the input text as the title attribute of the task. add a button whose clicking calls "submit, triggering the createTask() call from ng-submit" -->
@@ -73,7 +90,7 @@
         </ion-header-bar>
 
         <ion-content>
-        
+
           <form ng-submit="createTask(task)">
             <div class="list">
               <label class="item item-input">
